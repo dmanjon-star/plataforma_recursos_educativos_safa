@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Biblioteca de recursos educativos digitales para docentes de Infantil y Primaria de SAFA, organizada por categorías y basada en el DUA.">
+  <title>Recursos SAFA | Biblioteca de recursos educativos</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📚%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Enlace para saltar al contenido (teclado y lectores de pantalla) -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Avisos para lectores de pantalla: «polite» para novedades, «alert» para errores -->
+  <div id="sr-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ===================================================================
+       VISTA 1 · INICIO DE SESIÓN
+       =================================================================== -->
+  <main id="view-login" class="login-view" hidden>
+    <div class="login-card">
+      <div class="login-logo" aria-hidden="true">📚</div>
+      <h1 class="login-title">Recursos SAFA</h1>
+      <p class="login-subtitle">Biblioteca de recursos para docentes de Infantil y Primaria</p>
+
+      <p class="help-box">
+        <span aria-hidden="true">💡</span>
+        Escribe tu <strong>usuario</strong> y tu <strong>contraseña</strong>. Después pulsa <strong>Entrar</strong>.
+      </p>
+
+      <form id="login-form" novalidate>
+        <div class="form-field">
+          <label for="login-user" class="field-label"><span aria-hidden="true">👤</span> Usuario</label>
+          <input type="text" id="login-user" class="form-control form-control-lg" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        </div>
+        <div class="form-field">
+          <label for="login-pass" class="field-label"><span aria-hidden="true">🔑</span> Contraseña</label>
+          <div class="input-with-button">
+            <input type="password" id="login-pass" class="form-control form-control-lg" autocomplete="current-password" required>
+            <button type="button" id="btn-toggle-pass" class="btn btn-outline" aria-pressed="false" aria-controls="login-pass">
+              <span aria-hidden="true">👁️</span> <span class="btn-label">Ver</span>
+            </button>
+          </div>
+        </div>
+        <div id="login-error" class="alert alert-danger" role="alert" hidden></div>
+        <button type="submit" class="btn btn-primary btn-xl btn-block">
+          <span aria-hidden="true">➡️</span> Entrar
+        </button>
+      </form>
+
+      <details class="login-help">
+        <summary>¿No tienes cuenta o no recuerdas la contraseña?</summary>
+        <p>Pide ayuda al equipo de administración del colegio. Ellos crean las cuentas y cambian las contraseñas.</p>
+        <p class="demo-accounts">
+          <strong>Cuentas de prueba:</strong><br>
+          Docente: <code>docente</code> / <code>Docente2026!</code><br>
+          Administración: <code>admin</code> / <code>Admin2026!</code>
+        </p>
+      </details>
+
+      <div class="login-tools">
+        <button type="button" class="btn btn-outline js-toggle-contrast" aria-pressed="false">
+          <span aria-hidden="true">🌓</span> Alto contraste
+        </button>
+        <button type="button" class="btn btn-outline js-toggle-text" aria-pressed="false">
+          <span aria-hidden="true">🔠</span> Letra grande
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================================================================
+       APLICACIÓN (después de entrar)
+       =================================================================== -->
+  <div id="app-shell" hidden>
+    <header class="app-header">
+      <div class="header-container">
+        <div class="branding">
+          <span class="brand-logo" aria-hidden="true">📚</span>
+          <div>
+            <p class="app-title">Recursos SAFA</p>
+            <p class="app-subtitle">Infantil y Primaria</p>
+          </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Menú principal">
+          <a href="#catalogo" class="nav-link" data-route="catalogo"><span aria-hidden="true">📚</span> Catálogo</a>
+          <a href="#admin" class="nav-link" data-route="admin" data-admin-only hidden><span aria-hidden="true">⚙️</span> Administrar</a>
+          <a href="#ayuda" class="nav-link" data-route="ayuda"><span aria-hidden="true">❓</span> Ayuda</a>
+        </nav>
+
+        <div class="header-tools">
+          <button type="button" class="btn btn-outline btn-sm js-toggle-contrast" aria-pressed="false">
+            <span aria-hidden="true">🌓</span> Contraste
+          </button>
+          <button type="button" class="btn btn-outline btn-sm js-toggle-text" aria-pressed="false">
+            <span aria-hidden="true">🔠</span> Letra grande
+          </button>
+          <span id="user-badge" class="user-badge"></span>
+          <button type="button" id="btn-my-password" class="btn btn-outline btn-sm">
+            <span aria-hidden="true">🔑</span> Mi contraseña
+          </button>
+          <button type="button" id="btn-logout" class="btn btn-secondary btn-sm">
+            <span aria-hidden="true">🚪</span> Salir
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+      <!-- =============================================================
+           VISTA 2 · CATÁLOGO, BÚSQUEDA Y FILTROS
+           ============================================================= -->
+      <section id="view-catalog" class="view" aria-labelledby="catalog-title" hidden>
+        <h1 id="catalog-title" class="view-title"><span aria-hidden="true">📚</span> Catálogo de recursos</h1>
+        <p class="view-help">Escribe lo que buscas o elige una sección. Pulsa <strong>Abrir</strong> para usar un recurso.</p>
+
+        <form id="search-form" class="search-panel" role="search" aria-label="Buscar recursos">
+          <div class="search-row">
+            <label for="search-input" class="visually-hidden">Buscar recursos</label>
+            <input type="search" id="search-input" class="form-control form-control-lg" placeholder="Ejemplo: sumas, cuentos, mapas…" autocomplete="off">
+            <button type="submit" class="btn btn-primary btn-lg"><span aria-hidden="true">🔍</span> Buscar</button>
+          </div>
+
+          <div class="filters-grid">
+            <div class="filter-group">
+              <label for="filter-category" class="filter-label"><span aria-hidden="true">🗂️</span> Categoría</label>
+              <select id="filter-category" class="form-control"></select>
+            </div>
+            <div class="filter-group">
+              <label for="filter-subcategory" class="filter-label"><span aria-hidden="true">📂</span> Sección</label>
+              <select id="filter-subcategory" class="form-control"></select>
+            </div>
+            <div class="filter-group">
+              <label for="filter-area" class="filter-label"><span aria-hidden="true">📖</span> Materia</label>
+              <select id="filter-area" class="form-control"></select>
+            </div>
+            <div class="filter-group">
+              <label for="filter-grade" class="filter-label"><span aria-hidden="true">🎒</span> Curso</label>
+              <select id="filter-grade" class="form-control"></select>
+            </div>
+          </div>
+
+          <details class="more-filters">
+            <summary><span aria-hidden="true">➕</span> Más filtros</summary>
+            <div class="filters-grid">
+              <div class="filter-group">
+                <label for="filter-stage" class="filter-label">Etapa</label>
+                <select id="filter-stage" class="form-control">
+                  <option value="">Todas las etapas</option>
+                  <option value="Infantil">Educación Infantil</option>
+                  <option value="Primaria">Educación Primaria</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="filter-dok" class="filter-label">Tipo de pensamiento (DOK)</label>
+                <select id="filter-dok" class="form-control"></select>
+              </div>
+              <div class="filter-group">
+                <label for="filter-udl" class="filter-label">Principio DUA</label>
+                <select id="filter-udl" class="form-control"></select>
+              </div>
+              <div class="filter-group">
+                <label for="filter-cost" class="filter-label">Precio</label>
+                <select id="filter-cost" class="form-control"></select>
+              </div>
+            </div>
+          </details>
+
+          <div class="search-actions">
+            <button type="button" id="btn-reset-filters" class="btn btn-outline"><span aria-hidden="true">🧹</span> Quitar filtros</button>
+            <button type="button" id="btn-download-list" class="btn btn-outline"><span aria-hidden="true">⬇️</span> Descargar esta lista</button>
+          </div>
+        </form>
+
+        <nav aria-labelledby="sections-title" class="category-tiles-wrap">
+          <h2 id="sections-title" class="section-title">Elige una categoría</h2>
+          <ul id="category-tiles" class="category-tiles"></ul>
+        </nav>
+
+        <p id="results-count" class="results-count" aria-live="polite"></p>
+        <div id="catalog-results"></div>
+      </section>
+
+      <!-- =============================================================
+           VISTA 3 · PANEL DE ADMINISTRACIÓN
+           ============================================================= -->
+      <section id="view-admin" class="view" aria-labelledby="admin-title" hidden>
+        <h1 id="admin-title" class="view-title"><span aria-hidden="true">⚙️</span> Administrar</h1>
+        <p class="view-help">Aquí puedes añadir, cambiar o borrar recursos, secciones y cuentas.</p>
+
+        <div class="tabs" role="tablist" aria-label="Partes del panel de administración">
+          <button type="button" role="tab" id="tab-add" aria-controls="panel-add" aria-selected="true" class="tab"><span aria-hidden="true">➕</span> Añadir recurso</button>
+          <button type="button" role="tab" id="tab-list" aria-controls="panel-list" aria-selected="false" tabindex="-1" class="tab"><span aria-hidden="true">📋</span> Recursos</button>
+          <button type="button" role="tab" id="tab-categories" aria-controls="panel-categories" aria-selected="false" tabindex="-1" class="tab"><span aria-hidden="true">🗂️</span> Categorías</button>
+          <button type="button" role="tab" id="tab-users" aria-controls="panel-users" aria-selected="false" tabindex="-1" class="tab"><span aria-hidden="true">👥</span> Cuentas</button>
+          <button type="button" role="tab" id="tab-backup" aria-controls="panel-backup" aria-selected="false" tabindex="-1" class="tab"><span aria-hidden="true">💾</span> Copias</button>
+        </div>
+
+        <!-- Pestaña: Añadir / editar recurso -->
+        <div role="tabpanel" id="panel-add" aria-labelledby="tab-add" class="tab-panel">
+          <h2 id="resource-form-title" class="section-title">Añadir un recurso nuevo</h2>
+          <ol class="steps">
+            <li>Rellena los datos. Los que tienen <span class="required-mark">*</span> son obligatorios.</li>
+            <li>Pulsa <strong>Revisar recurso</strong>.</li>
+            <li>El sistema mira si sirve para clase y elige su sección.</li>
+            <li>Si todo está bien, pulsa <strong>Publicar</strong>.</li>
+          </ol>
+
+          <form id="resource-form" novalidate>
+            <input type="hidden" id="res-id">
+
+            <fieldset class="form-section">
+              <legend><span aria-hidden="true">1️⃣</span> Datos básicos</legend>
+              <div class="form-field">
+                <label for="res-name" class="field-label required">Nombre del recurso</label>
+                <input type="text" id="res-name" class="form-control" placeholder="Ejemplo: ScratchJr" maxlength="120" aria-describedby="res-name-error">
+                <p id="res-name-error" class="field-error" hidden></p>
+              </div>
+              <div class="form-field">
+                <label for="res-url" class="field-label required">Enlace (dirección web)</label>
+                <p id="res-url-hint" class="field-hint">Copia la dirección de la página principal. Si subes un archivo, el enlace no hace falta.</p>
+                <input type="url" id="res-url" class="form-control" placeholder="https://www.scratchjr.org" aria-describedby="res-url-hint res-url-error">
+                <p id="res-url-error" class="field-error" hidden></p>
+              </div>
+              <div class="form-field">
+                <label for="res-file" class="field-label">Archivo (opcional)</label>
+                <p id="res-file-hint" class="field-hint">Por ejemplo, una ficha en PDF. Máximo 1,5 MB.</p>
+                <input type="file" id="res-file" class="form-control" accept=".pdf,.doc,.docx,.odt,.ppt,.pptx,.odp,.xls,.xlsx,.png,.jpg,.jpeg,.gif,.mp3,.txt" aria-describedby="res-file-hint res-file-info">
+                <p id="res-file-info" class="field-hint" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label for="res-desc" class="field-label required">Descripción breve</label>
+                <p id="res-desc-hint" class="field-hint">Explica para qué sirve en clase, con frases cortas.</p>
+                <textarea id="res-desc" class="form-control" rows="3" maxlength="400" placeholder="Ejemplo: Sirve para practicar sumas y restas con juegos en 2.º de Primaria." aria-describedby="res-desc-hint res-desc-count res-desc-error"></textarea>
+                <p id="res-desc-count" class="field-hint char-count">0 / 400</p>
+                <p id="res-desc-error" class="field-error" hidden></p>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend><span aria-hidden="true">2️⃣</span> ¿Para quién es?</legend>
+              <p class="field-hint">Si no lo sabes, déjalo vacío. El sistema lo propondrá según la sección.</p>
+              <fieldset class="check-group">
+                <legend class="field-label"><span aria-hidden="true">📖</span> Materia</legend>
+                <div id="res-areas" class="check-grid"></div>
+              </fieldset>
+              <fieldset class="check-group">
+                <legend class="field-label"><span aria-hidden="true">🎒</span> Curso</legend>
+                <div id="res-grades" class="check-grid"></div>
+              </fieldset>
+            </fieldset>
+
+            <details class="form-section form-more">
+              <summary><span aria-hidden="true">3️⃣</span> Más datos (opcional)</summary>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="res-dok" class="field-label">Tipo de pensamiento (DOK de Webb)</label>
+                  <select id="res-dok" class="form-control"></select>
+                </div>
+                <div class="form-field">
+                  <label for="res-cost" class="field-label">Precio</label>
+                  <select id="res-cost" class="form-control"></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="res-methodology" class="field-label">Metodología</label>
+                  <input type="text" id="res-methodology" class="form-control" placeholder="ABP, gamificación, indagación…">
+                </div>
+                <div class="form-field">
+                  <label for="res-language" class="field-label">Idioma</label>
+                  <input type="text" id="res-language" class="form-control" placeholder="Español">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="res-accessibility" class="field-label">Accesibilidad (separa con comas)</label>
+                  <input type="text" id="res-accessibility" class="form-control" placeholder="Pictogramas, lectura en voz alta…">
+                </div>
+                <div class="form-field">
+                  <label for="res-license" class="field-label">Licencia</label>
+                  <input type="text" id="res-license" class="form-control" placeholder="Creative Commons, gratuita…">
+                </div>
+              </div>
+              <fieldset class="check-group">
+                <legend class="field-label">Principios DUA</legend>
+                <div id="res-udl" class="check-grid"></div>
+              </fieldset>
+            </details>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-lg"><span aria-hidden="true">🔎</span> Revisar recurso</button>
+              <button type="button" id="btn-clear-form" class="btn btn-outline btn-lg"><span aria-hidden="true">🧹</span> Vaciar</button>
+              <button type="button" id="btn-cancel-edit" class="btn btn-outline btn-lg" hidden><span aria-hidden="true">↩️</span> Cancelar edición</button>
+            </div>
+          </form>
+
+          <!-- Resultado de la revisión (clasificación, rechazo, duplicado…) -->
+          <section id="analysis-panel" class="analysis-panel" tabindex="-1" aria-labelledby="analysis-title" hidden></section>
+        </div>
+
+        <!-- Pestaña: lista de recursos -->
+        <div role="tabpanel" id="panel-list" aria-labelledby="tab-list" class="tab-panel" hidden>
+          <h2 class="section-title">Todos los recursos</h2>
+          <div class="search-row">
+            <label for="admin-search" class="visually-hidden">Buscar en la lista de recursos</label>
+            <input type="search" id="admin-search" class="form-control" placeholder="Buscar por nombre o sección…">
+          </div>
+          <p id="admin-list-count" class="results-count" aria-live="polite"></p>
+          <div class="table-wrap">
+            <table class="data-table">
+              <caption class="visually-hidden">Lista de recursos publicados</caption>
+              <thead>
+                <tr><th scope="col">Nombre</th><th scope="col">Sección</th><th scope="col">Materia</th><th scope="col">Curso</th><th scope="col">Acciones</th></tr>
+              </thead>
+              <tbody id="admin-list-body"></tbody>
+            </table>
+          </div>
+          <button type="button" id="btn-admin-more" class="btn btn-outline" hidden>Ver más</button>
+        </div>
+
+        <!-- Pestaña: categorías -->
+        <div role="tabpanel" id="panel-categories" aria-labelledby="tab-categories" class="tab-panel" hidden>
+          <h2 class="section-title">Categorías y secciones</h2>
+          <p class="view-help">Cada sección tiene <strong>criterios</strong>: palabras que usa el sistema para colocar los recursos nuevos.</p>
+          <button type="button" id="btn-new-category" class="btn btn-primary"><span aria-hidden="true">➕</span> Nueva categoría</button>
+          <div id="categories-admin"></div>
+        </div>
+
+        <!-- Pestaña: cuentas -->
+        <div role="tabpanel" id="panel-users" aria-labelledby="tab-users" class="tab-panel" hidden>
+          <h2 class="section-title">Cuentas de docentes y administración</h2>
+          <form id="user-form" class="card form-card" novalidate>
+            <h3 class="card-heading"><span aria-hidden="true">➕</span> Crear una cuenta</h3>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="usr-name" class="field-label required">Nombre y apellidos</label>
+                <input type="text" id="usr-name" class="form-control" maxlength="80">
+              </div>
+              <div class="form-field">
+                <label for="usr-username" class="field-label required">Usuario</label>
+                <input type="text" id="usr-username" class="form-control" autocapitalize="none" spellcheck="false" maxlength="30" aria-describedby="usr-username-hint">
+                <p id="usr-username-hint" class="field-hint">Sin espacios ni tildes. Ejemplo: maria.lopez</p>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="usr-pass" class="field-label required">Contraseña</label>
+                <input type="password" id="usr-pass" class="form-control" autocomplete="new-password" aria-describedby="usr-pass-hint">
+                <p id="usr-pass-hint" class="field-hint">8 caracteres o más, con algún número.</p>
+              </div>
+              <div class="form-field">
+                <label for="usr-role" class="field-label">Tipo de cuenta</label>
+                <select id="usr-role" class="form-control">
+                  <option value="docente">Docente (ver y descargar)</option>
+                  <option value="admin">Administración (puede cambiar todo)</option>
+                </select>
+              </div>
+            </div>
+            <div id="user-form-msg" class="alert" role="status" hidden></div>
+            <button type="submit" class="btn btn-primary"><span aria-hidden="true">💾</span> Crear cuenta</button>
+          </form>
+          <div class="table-wrap">
+            <table class="data-table">
+              <caption class="visually-hidden">Cuentas existentes</caption>
+              <thead><tr><th scope="col">Nombre</th><th scope="col">Usuario</th><th scope="col">Tipo</th><th scope="col">Acciones</th></tr></thead>
+              <tbody id="users-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Pestaña: copias de seguridad -->
+        <div role="tabpanel" id="panel-backup" aria-labelledby="tab-backup" class="tab-panel" hidden>
+          <h2 class="section-title">Copias de seguridad</h2>
+          <p class="view-help">Los datos se guardan en este navegador. Descarga una copia de vez en cuando.</p>
+          <div class="backup-grid">
+            <div class="card">
+              <h3 class="card-heading"><span aria-hidden="true">⬇️</span> Descargar copia</h3>
+              <p>Guarda todos los recursos y categorías en un archivo.</p>
+              <button type="button" id="btn-export-json" class="btn btn-primary">Descargar copia (JSON)</button>
+            </div>
+            <div class="card">
+              <h3 class="card-heading"><span aria-hidden="true">⬆️</span> Cargar recursos</h3>
+              <p>Sube un archivo JSON o CSV. Cada recurso se revisa y se clasifica solo.</p>
+              <label for="import-file" class="btn btn-primary">Elegir archivo</label>
+              <input type="file" id="import-file" accept=".json,.csv" class="visually-hidden">
+            </div>
+            <div class="card">
+              <h3 class="card-heading"><span aria-hidden="true">♻️</span> Volver al principio</h3>
+              <p>Borra los cambios y vuelve al catálogo original. Las cuentas no se borran.</p>
+              <button type="button" id="btn-reset-seed" class="btn btn-danger">Restaurar catálogo original</button>
+            </div>
+          </div>
+          <div id="import-report" class="import-report" tabindex="-1" hidden></div>
+        </div>
+      </section>
+
+      <!-- =============================================================
+           VISTA 4 · AYUDA (guías breves)
+           ============================================================= -->
+      <section id="view-help" class="view" aria-labelledby="help-title" hidden>
+        <h1 id="help-title" class="view-title"><span aria-hidden="true">❓</span> Ayuda</h1>
+
+        <article class="card help-card" aria-labelledby="help-teacher">
+          <h2 id="help-teacher" class="section-title"><span aria-hidden="true">👩‍🏫</span> Guía para docentes</h2>
+          <ol class="help-steps">
+            <li><span class="step-icon" aria-hidden="true">🔍</span> <strong>Buscar.</strong> Escribe una palabra en la caja de búsqueda. Por ejemplo: «sumas». Pulsa <strong>Buscar</strong>.</li>
+            <li><span class="step-icon" aria-hidden="true">🗂️</span> <strong>Elegir una categoría.</strong> Pulsa un botón grande de colores para ver solo esa categoría.</li>
+            <li><span class="step-icon" aria-hidden="true">🎒</span> <strong>Filtrar.</strong> Elige la materia y el curso. Verás solo los recursos que encajan.</li>
+            <li><span class="step-icon" aria-hidden="true">🔗</span> <strong>Abrir.</strong> Pulsa <strong>Abrir</strong>. El recurso se abre en una pestaña nueva.</li>
+            <li><span class="step-icon" aria-hidden="true">⬇️</span> <strong>Descargar.</strong> Si el recurso tiene archivo, pulsa <strong>Descargar archivo</strong>. Con <strong>Descargar esta lista</strong> te llevas la lista en Excel.</li>
+            <li><span class="step-icon" aria-hidden="true">🧹</span> <strong>Empezar de nuevo.</strong> Pulsa <strong>Quitar filtros</strong>.</li>
+          </ol>
+          <h3 class="help-subtitle">¿Qué significan las etiquetas?</h3>
+          <ul class="help-list">
+            <li><strong>⭐ Muy recomendado:</strong> el equipo lo ha marcado como de interés alto.</li>
+            <li><strong>Para el docente:</strong> sirve para preparar clases, no para el alumnado.</li>
+            <li><strong>DOK:</strong> el tipo de pensamiento. DOK 1 es recordar. DOK 4 es crear e investigar.</li>
+          </ul>
+          <h3 class="help-subtitle">Trucos</h3>
+          <ul class="help-list">
+            <li>Pulsa <strong>Letra grande</strong> si ves la letra pequeña.</li>
+            <li>Pulsa <strong>Contraste</strong> si te cuesta ver los colores.</li>
+            <li>Puedes usar solo el teclado: <kbd>Tab</kbd> para avanzar y <kbd>Intro</kbd> para pulsar.</li>
+          </ul>
+        </article>
+
+        <article class="card help-card" aria-labelledby="help-admin" data-admin-only hidden>
+          <h2 id="help-admin" class="section-title"><span aria-hidden="true">🛠️</span> Guía para administración</h2>
+          <ol class="help-steps">
+            <li><span class="step-icon" aria-hidden="true">➕</span> <strong>Añadir un recurso.</strong> Ve a <strong>Administrar › Añadir recurso</strong>. Escribe nombre, enlace y descripción. Pulsa <strong>Revisar recurso</strong>.</li>
+            <li><span class="step-icon" aria-hidden="true">🤖</span> <strong>Revisión automática.</strong> El sistema comprueba si sirve para clase, si ya existe y en qué sección va.</li>
+            <li><span class="step-icon" aria-hidden="true">✅</span> <strong>Publicar.</strong> Mira la sección propuesta. Puedes cambiarla. Pulsa <strong>Publicar</strong>.</li>
+            <li><span class="step-icon" aria-hidden="true">💡</span> <strong>Sección nueva.</strong> Si no encaja en ninguna, el sistema propone una sección nueva con su nombre y sus palabras clave. Revísalas y pulsa <strong>Crear sección y publicar</strong>.</li>
+            <li><span class="step-icon" aria-hidden="true">⛔</span> <strong>Recurso rechazado.</strong> Si no sirve para clase (compras, viajes, enlaces peligrosos o personales…), no se publica. El aviso explica el motivo y qué puedes hacer.</li>
+            <li><span class="step-icon" aria-hidden="true">✏️</span> <strong>Cambiar o borrar.</strong> En el catálogo o en <strong>Recursos</strong>, usa <strong>Editar</strong> o <strong>Borrar</strong>.</li>
+            <li><span class="step-icon" aria-hidden="true">🗂️</span> <strong>Categorías.</strong> En <strong>Categorías</strong> puedes crear, renombrar o borrar secciones y cambiar sus palabras clave.</li>
+            <li><span class="step-icon" aria-hidden="true">👥</span> <strong>Cuentas.</strong> En <strong>Cuentas</strong> das de alta a docentes y cambias contraseñas.</li>
+            <li><span class="step-icon" aria-hidden="true">💾</span> <strong>Copias.</strong> Descarga una copia cada semana. Los datos viven en este navegador.</li>
+          </ol>
+        </article>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Recursos SAFA · Fundación SAFA · Hecho con criterios DUA y accesibilidad WCAG 2.1 AA</p>
+    </footer>
+  </div>
+
+  <!-- Ventana de diálogo reutilizable (confirmar, editar sección, contraseña…).
+       <dialog> con showModal() mantiene el foco dentro y se cierra con Escape. -->
+  <dialog id="app-dialog" class="app-dialog" aria-labelledby="dialog-title">
+    <form method="dialog" id="dialog-form" class="dialog-form" novalidate>
+      <div class="modal-header">
+        <h2 id="dialog-title" class="modal-title"></h2>
+        <button type="button" class="btn-close" id="dialog-close" aria-label="Cerrar ventana">×</button>
+      </div>
+      <div id="dialog-body" class="modal-body"></div>
+      <div id="dialog-error" class="alert alert-danger" role="alert" hidden></div>
+      <div class="modal-footer">
+        <button type="button" id="dialog-cancel" class="btn btn-outline btn-lg">Cancelar</button>
+        <button type="submit" id="dialog-confirm" class="btn btn-primary btn-lg">Aceptar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Aviso flotante breve («Recurso publicado», etc.) -->
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <!-- Orden de carga: datos → utilidades → almacenamiento → permisos → clasificador → interfaz -->
+  <script src="js/data-catalogo.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/classifier.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
