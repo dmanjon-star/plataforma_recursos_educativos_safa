@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Generador del catálogo inicial (js/data-catalogo.js) a partir del Excel
+Generador de la semilla del catálogo (data/semilla/excel.json) a partir del Excel
 «Clasificacion_paginas_web.xlsx», hoja «Para el proyecto docente».
 
 Uso:
     python3 herramientas/generar_catalogo.py RUTA/Clasificacion_paginas_web.xlsx
+    npm run catalogo      # vuelve a construir data/catalogo.json con la semilla
 
 Qué hace (en este orden):
  1. Lee solo los recursos de interés «Alta» o «Media» (ya filtrados y
@@ -341,23 +342,12 @@ def main(xlsx_path: str, out_path: str):
             }
         )
 
-    header = (
-        "/**\n"
-        " * Catálogo generado automáticamente desde el Excel «Clasificación de páginas web»\n"
-        " * (hoja «Para el proyecto docente»). NO editar a mano: volver a ejecutar\n"
-        " *   python3 herramientas/generar_catalogo.py RUTA/Clasificacion_paginas_web.xlsx\n"
-        f" * Recursos: {len(resources)}\n"
-        " */\n"
-    )
     with open(out_path, "w", encoding="utf-8") as fh:
-        fh.write(header)
-        fh.write("window.EXCEL_RESOURCES = ")
         json.dump(resources, fh, ensure_ascii=False, indent=1)
-        fh.write(";\n")
     print(f"{len(resources)} recursos escritos en {out_path}")
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit("Uso: generar_catalogo.py RUTA/Clasificacion_paginas_web.xlsx [salida.js]")
-    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else "js/data-catalogo.js")
+    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else "data/semilla/excel.json")

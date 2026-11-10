@@ -2,15 +2,28 @@
 
 Todos los textos están escritos en **lenguaje sencillo**: frases cortas, palabras comunes, un icono junto a cada idea y siempre una acción posible («¿Qué puedo hacer?»). Esta lista sirve para revisarlos sin leer el código.
 
-## Inicio de sesión (`js/auth.js`)
+## Inicio de sesión (`servidor/cuentas.js`, `servidor/servidor.js`)
 
 | Situación | Mensaje |
 |---|---|
 | Campos vacíos | Escribe tu usuario y tu contraseña. |
 | Usuario o contraseña incorrectos | El usuario o la contraseña no son correctos. Revísalos y prueba otra vez. |
-| 5 fallos seguidos | Has fallado muchas veces. Espera N segundos y vuelve a probar. |
+| Muchos fallos seguidos | Has fallado muchas veces. Espera unos minutos y vuelve a probar. |
+| Prueba terminada | Tu acceso de prueba ha terminado. Pide una cuenta completa al equipo de administración. |
+| Cuenta desactivada | Esta cuenta está desactivada. Habla con el equipo de administración. |
+| Sesión terminada | Tu sesión ha terminado. Vuelve a entrar. |
+| Enlace de invitado no válido | Este enlace no es válido. Puede que se haya creado uno nuevo. |
+| Pedir prueba gratis | Si el correo es correcto, en unos minutos te llegará un enlace para entrar. Mira también en «Spam». |
 | Docente entra en «Administrar» | Esa parte es solo para administración. |
 | Acción sin permiso | No tienes permiso para hacer esto. Solo el equipo de administración puede. |
+
+## Análisis del enlace (`servidor/autoclasificador.js`, `servidor/extractor.js`)
+
+| Situación | Mensaje |
+|---|---|
+| Leyendo | ⏳ Leyendo la página y clasificando… (puede tardar unos segundos) |
+| No se puede leer | ❓ No hemos podido leer la página. *La página tarda demasiado en responder / responde con un error (404) / es de una red interna…* Escribe tú el nombre y una descripción corta. Con eso la clasificamos. |
+| Ficha hecha | Ficha creada con las reglas de la plataforma. / Ficha redactada con inteligencia artificial y revisada por reglas. |
 
 ## Formulario de recurso (`js/classifier.js` · `checkRequired`)
 
@@ -52,6 +65,16 @@ Siempre se añade: **El recurso no se ha publicado.**
 | Contador | Hay N recursos. Busca o elige una categoría. / Hemos encontrado N de M recursos. |
 | Sin resultados | 🔎 No hay recursos con estos filtros. Prueba con otra palabra o quita algún filtro. |
 | Enlace (lector de pantalla) | Abrir *nombre* (se abre en una pestaña nueva) |
+
+## Cursos y pagos
+
+| Situación | Mensaje |
+|---|---|
+| Cuenta de pago sin pagar | 🔓 Desbloquea los cursos. Con el plan de pago ves todos los cursos durante 12 meses por 49,00 €. 🔒 Pagas en la página segura de Stripe o PayPal. Nosotros nunca vemos los datos de tu tarjeta. |
+| VIP, docente o invitado | ℹ️ Los cursos están incluidos en el plan de pago. Si te interesan, habla con el equipo de administración. |
+| Pago correcto | ✅ ¡Pago recibido! Ya puedes ver todos los cursos. |
+| Pago no completado | ⛔ El pago no se ha completado. *Motivo.* Puedes probar otra vez. |
+| Importe distinto | El importe pagado no coincide con el precio. |
 
 ## Categorías y cuentas
 

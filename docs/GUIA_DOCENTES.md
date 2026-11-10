@@ -4,7 +4,7 @@ Esta web es una **biblioteca de recursos** para tus clases. Aquí tienes los pas
 
 ## 1. Entrar
 
-![Pantalla para entrar](capturas/01-login.png)
+![Pantalla para entrar](capturas/01-entrar.png)
 
 1. Escribe tu **usuario**.
 2. Escribe tu **contraseña**. Pulsa 👁️ **Ver** si quieres comprobarla.
@@ -12,9 +12,15 @@ Esta web es una **biblioteca de recursos** para tus clases. Aquí tienes los pas
 
 ¿No tienes cuenta? Pídela al equipo de administración del colegio.
 
-## 2. Buscar un recurso
+### Probar gratis
 
-![Catálogo](capturas/02-catalogo-docente.png)
+Si en la pantalla de inicio ves **🎁 ¿Quieres probarla gratis?**, escribe tu correo y pulsa **Enviarme el enlace**. Te llegará un correo con un enlace para entrar. Si te invita el equipo de administración, también recibirás ese enlace.
+
+![Acceso de invitado](capturas/07-invitado.png)
+
+Con el acceso de prueba ves **una selección** de recursos durante unos días. Arriba verás cuántos recursos ves y cuándo termina la prueba.
+
+## 2. Buscar un recurso
 
 - 🔍 Escribe una palabra en la caja. Por ejemplo: **sumas**, **cuentos** o **mapas**. Pulsa **Buscar**.
 - 🗂️ O pulsa un **botón grande** de categoría para ver solo esa.
@@ -48,23 +54,36 @@ Botones:
 - 🔗 **Abrir**: abre el recurso en una pestaña nueva.
 - ⬇️ **Descargar archivo**: aparece si el recurso tiene una ficha o documento.
 
-## 5. Llevarte la lista
+## 5. Cursos de formación
+
+En 🎓 **Cursos** verás los cursos de formación.
+
+| Tu cuenta | Qué ves |
+|---|---|
+| 💳 De pago | Pulsa **Pagar con tarjeta** o **Pagar con PayPal**. Pagas en una página segura y, al volver, se abren todos los cursos |
+| ⭐ VIP, 👩‍🏫 Docente o 🎁 Invitado | Los títulos de los cursos. Para verlos, hace falta el plan de pago |
+
+![Pagar los cursos](capturas/08-pagar.png)
+
+![Cursos abiertos](capturas/09-cursos-pagados.png)
+
+## 6. Llevarte la lista
 
 Pulsa ⬇️ **Descargar esta lista**. Se descarga un archivo que se abre con Excel. Tiene los recursos que estás viendo con los filtros.
 
-## 6. Empezar de nuevo
+## 7. Empezar de nuevo
 
 Pulsa 🧹 **Quitar filtros**.
 
-## 7. Trucos
+## 8. Trucos
 
 - 🔠 **Letra grande**: la letra se ve más grande.
 - 🌓 **Contraste**: blanco y negro, para ver mejor.
 - ⌨️ **Teclado**: <kbd>Tab</kbd> para avanzar, <kbd>Intro</kbd> para pulsar, <kbd>Esc</kbd> para cerrar ventanas.
-- 🔑 **Mi contraseña**: cambia tu contraseña cuando quieras.
+- 🔑 **Mi contraseña**: cambia tu contraseña cuando quieras (no está en las cuentas de prueba).
 - 🚪 **Salir**: cierra tu sesión al terminar, sobre todo en ordenadores compartidos.
 
-## 8. Palabras que verás
+## 9. Palabras que verás
 
 | Palabra | Qué significa |
 |---|---|

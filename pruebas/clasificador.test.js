@@ -16,7 +16,7 @@ function loadPlatform() {
   const ctx = { console, TextEncoder, URL };
   ctx.window = ctx;
   vm.createContext(ctx);
-  for (const f of ["data-catalogo.js", "data.js", "utils.js", "classifier.js"]) {
+  for (const f of ["data.js", "utils.js", "classifier.js"]) {
     vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "js", f), "utf8"), ctx, { filename: f });
   }
   return ctx;
@@ -26,7 +26,8 @@ const W = loadPlatform();
 const C = W.EduClassifier;
 const U = W.EduUtils;
 const categories = W.INITIAL_CATEGORIES;
-const catalog = W.INITIAL_RESOURCES;
+// Catálogo inicial (el mismo que usa el servidor)
+const catalog = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "catalogo.json"), "utf8")).resources;
 
 const base = { areas: [], grades: [] };
 const analyze = (r) => C.analyze({ ...base, ...r }, { catalog, categories });

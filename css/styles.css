@@ -655,3 +655,42 @@ body.high-contrast .app-dialog { border: 3px solid #000; }
   .app-header, .search-panel, .category-tiles-wrap, .card-actions, .app-footer, .skip-link { display: none !important; }
   .card { box-shadow: none; break-inside: avoid; }
 }
+
+/* ---------- 15. Versión 2: servidor, perfiles, cursos y pagos ---------- */
+.loading-view { min-height: 100vh; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1.3rem; font-weight: 700; color: var(--text-muted); }
+.alert-info { background: var(--info-bg); border-color: var(--info-border); color: #1e3a8a; }
+body.high-contrast .alert-info { color: #000; }
+
+.guest-request { margin-top: 1.5rem; padding-top: 1rem; border-top: 2px dashed var(--border-soft); }
+.guest-request .section-title { margin-top: 0; }
+.guest-request p { margin-bottom: 0.75rem; }
+.guest-banner {
+  background: var(--star-bg);
+  border: 2px solid var(--warning);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--star-text);
+}
+.guest-banner p + p { margin-top: 0.35rem; }
+
+.card-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.1rem; margin-top: 1rem; }
+.course-card p { margin-bottom: 0.5rem; }
+.lesson-list { margin: 0.5rem 0 0 1.25rem; display: grid; gap: 0.6rem; }
+.pay-box { margin-bottom: 1.25rem; border: 2px solid var(--primary); }
+.pay-box p { margin-bottom: 0.6rem; }
+
+.radio-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem; }
+.resource-editor { margin-top: 1.25rem; }
+.guest-check { margin-bottom: 1rem; max-width: 32rem; }
+.check-inline { min-height: 44px; padding: 0.2rem 0.6rem; display: inline-flex; }
+
+.invite-result { margin-top: 1rem; display: grid; gap: 0.5rem; }
+.invite-result:focus { outline: none; }
+.invite-result:focus-visible { outline: 3px solid var(--focus-ring); }
+.profile-legend { list-style: none; display: grid; gap: 0.35rem; margin-bottom: 1.25rem; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--radius-md); padding: 1rem 1.25rem; }
+.form-card .btn { margin-top: 0.25rem; }
+.help-steps li > span:last-child { display: block; }
+.course-card .card-heading { display: block; }

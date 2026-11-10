@@ -1,0 +1,6 @@
+node_modules
+.env
+data/privado
+.git
+pruebas
+docs/capturas

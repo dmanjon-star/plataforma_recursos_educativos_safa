@@ -1,106 +1,88 @@
 # Guía para administración
 
-La cuenta de administración puede hacer todo lo de un docente y, además, **añadir, cambiar y borrar** recursos, secciones y cuentas. Todo está en ⚙️ **Administrar**.
+La cuenta de administración puede hacerlo todo. Está todo en ⚙️ **Administrar**.
 
-> **Primera vez:** entra con `admin` / `Admin2026!` y cambia la contraseña en 🔑 **Mi contraseña**. Cambia también la de `docente` (o bórrala) en 👥 **Cuentas**. Mientras no se cambien, la pantalla de inicio las muestra.
+> **Primera vez:** entra con `admin` y la contraseña que te dio quien instaló la plataforma. Cámbiala en 🔑 **Mi contraseña**.
 
-## 1. Añadir un recurso
+## 1. Añadir un recurso: solo el enlace
 
 1. Ve a ⚙️ **Administrar › ➕ Añadir recurso**.
-2. Rellena los **datos básicos** (con * son obligatorios):
-   - **Nombre**.
-   - **Enlace**: la página principal del recurso, que pueda abrir cualquiera. O sube un **archivo** (máximo 1,5 MB).
-   - **Descripción breve**: para qué sirve en clase, con frases cortas.
-3. **¿Para quién es?** Marca materia y curso. Si no lo sabes, déjalo vacío: el sistema lo propondrá.
-4. **Más datos** (opcional): DOK, precio, metodología, idioma, accesibilidad, licencia y principios DUA.
-5. Pulsa 🔎 **Revisar recurso**.
+2. Pega el **enlace** del recurso.
+3. Pulsa 🔎 **Analizar** y espera unos segundos.
 
-## 2. Qué puede pasar al revisar
+La plataforma lee la página y hace todo esto sola:
+- comprueba si sirve para clase;
+- mira si ya existe;
+- elige la sección;
+- rellena la ficha: nombre, descripción, materia, curso, precio, idioma y **etiquetas**.
 
-### ✅ Todo bien
+![Ficha automática](capturas/03-ficha-automatica.png)
 
-![Recurso clasificado](capturas/04-clasificado.png)
+4. Revisa la ficha. Cambia lo que quieras.
+5. Pulsa 📤 **Publicar recurso**.
 
-El sistema dice **en qué sección va** y por qué (las «pistas»). Puedes cambiar la sección en la lista. Pulsa 📤 **Publicar recurso**.
+Si el recurso no tiene enlace (por ejemplo, una ficha en PDF), abre **«Escribir yo el nombre y la descripción»**, escríbelos y pulsa **Analizar**. Después sube el archivo en **Más datos**.
 
-### ⛔ No se puede publicar
+## 2. Qué puede pasar al analizar
 
-![Recurso rechazado](capturas/05-rechazado.png)
+| Aviso | Qué significa | Qué hacer |
+|---|---|---|
+| ✅ **¡Todo bien!** | Sirve para clase y tiene sección | Revisa y pulsa **Publicar** |
+| 💡 **No encaja en ninguna sección** | Es educativo, pero no hay sección para él | Revisa el nombre y los criterios de la **sección nueva** que se propone. Se crea al publicar. También puedes elegir una que ya exista |
+| ⚠️ **Puede que ya exista** | Hay otro recurso con la misma dirección o muy parecido | Elige **Descartar**, **Guardar como variante** o **Guardar igualmente** |
+| ⛔ **No se puede publicar** | No sirve para clase, o el enlace es peligroso, temporal o personal | Lee el motivo. Si sí sirve para clase, pulsa **Explicar para qué sirve en clase** y escríbelo |
+| ❓ **No hemos podido leer la página** | La web no deja entrar a programas | Escribe tú el nombre y una descripción corta |
 
-El recurso **no se guarda**. El aviso explica el **motivo** y **qué puedes hacer**:
+![Recurso rechazado](capturas/04-rechazado.png)
 
-| Motivo | Qué hacer |
-|---|---|
-| No tiene utilidad educativa (compras, viajes, banca, negocio, ocio…) | Si sí sirve para clase, explícalo en la descripción |
-| Contenido de riesgo (piratería, apuestas, adultos…) | No uses ese enlace; busca la página oficial |
-| Enlace temporal (entrar, pagar, buscar…) | Copia la dirección de la página principal |
-| Datos personales (tu correo, una sesión, un documento en edición…) | Usa el enlace público |
+![Sección nueva propuesta](capturas/05-seccion-nueva.png)
 
-### ⚠️ Puede que ya exista
+## 3. Cambiar, borrar y elegir qué ven los invitados
 
-El sistema encontró un recurso con la misma dirección o con nombre y descripción muy parecidos. Elige:
+- En el **Catálogo** o en **📋 Recursos**: ✏️ **Editar** o 🗑️ **Borrar**.
+- Al editar, 🔄 **Volver a clasificar** te dice qué sección recomienda ahora.
+- En **📋 Recursos**, la columna **Invitados** marca qué recursos ven los invitados. También está en la ficha, en **Más datos › Visible para invitados**.
 
-- 🗑️ **Descartar**: no se guarda.
-- 🔀 **Guardar como variante**: se guarda con «(Variante de uso)» en el nombre.
-- 💾 **Guardar igualmente**: se guarda tal cual.
+## 4. Perfiles y cuentas
 
-### 💡 Es educativo, pero no encaja en ninguna sección
+En **👥 Cuentas**:
 
-![Propuesta de sección nueva](capturas/06-nueva-seccion.png)
+| Perfil | Ve | Cómo se crea |
+|---|---|---|
+| 🎁 **Invitado** | Una selección de recursos, unos días | **Invitar a una persona**: escribe su correo. La plataforma crea el usuario, la contraseña y un **enlace para entrar** |
+| ⭐ **VIP** | Todos los recursos | **Crear una cuenta** → tipo VIP |
+| 💳 **De pago** | Todos los recursos y, **después de pagar**, los cursos | **Crear una cuenta** → tipo De pago. La persona paga desde **🎓 Cursos** |
+| 👩‍🏫 **Docente del centro** | Todos los recursos | **Crear una cuenta** → tipo Docente |
+| ⚙️ **Administración** | Todo | **Crear una cuenta** → tipo Administración |
 
-El sistema propone una **sección nueva** con:
+![Invitación](capturas/02-invitacion.png)
 
-- un **nombre**,
-- la **categoría** donde irá,
-- unos **criterios** (palabras clave) para colocar ahí los recursos futuros.
+- Si el correo está configurado, la invitación **llega sola**. Si no, copia el enlace con 📋 **Copiar** y envíalo tú. La contraseña solo se muestra en ese momento.
+- ✏️ **Editar** cambia el nombre, el correo, el tipo, la fecha de fin de la prueba o la fecha hasta la que tiene pagado. También activa o desactiva la cuenta.
+- 🔗 **Nuevo enlace** (invitados) crea otro enlace; el anterior deja de funcionar.
+- 🔑 **Contraseña** cambia la contraseña de cualquier cuenta.
+- 🗑️ **Borrar** elimina la cuenta. No puedes borrar la tuya ni la última de administración.
 
-Revísalos y pulsa ✅ **Crear sección y publicar**. Si prefieres, abre **«Prefiero usar una sección que ya existe»** y elige otra.
+## 5. Cursos y pagos
 
-## 3. Cambiar o borrar un recurso
+- **🎓 Cursos:** crea, cambia o borra cursos. Las lecciones se escriben una por línea: `Título | enlace | descripción`.
+- **💳 Pagos:** lista de pagos recibidos y hasta cuándo tiene acceso cada persona.
+- El pago se hace en la **página segura** de Stripe o PayPal. La plataforma nunca ve las tarjetas. El acceso se da solo cuando el servidor confirma el pago.
 
-- En el **Catálogo** o en ⚙️ **Administrar › 📋 Recursos**, pulsa ✏️ **Editar** o 🗑️ **Borrar**.
-- Al editar, se vuelve a revisar el recurso. La sección actual se mantiene salvo que elijas otra.
-- Para **mover** un recurso de sección: edítalo y elige la sección nueva antes de guardar.
+## 6. Categorías y secciones
 
-## 4. Categorías y secciones
+En **🗂️ Categorías** puedes crear, renombrar y borrar categorías y secciones, y cambiar sus **criterios** (las palabras clave que usa la clasificación). Una sección con recursos no se puede borrar: primero mueve o borra sus recursos.
 
-En ⚙️ **Administrar › 🗂️ Categorías**:
+## 7. GitHub y copias
 
-- ➕ **Nueva categoría**: nombre, icono y descripción.
-- ➕ **Nueva sección**: nombre, icono y **criterios** (palabras clave separadas por comas).
-- ✏️ **Editar / Renombrar**: los recursos se actualizan solos.
-- 🗑️ **Borrar**: solo si está vacía. Si tiene recursos, primero muévelos o bórralos.
+En **💾 Copias y GitHub**:
 
-**Consejo para los criterios:** escribe palabras que aparezcan en los nombres y descripciones de esos recursos, sin tildes ni mayúsculas (el sistema las quita igualmente). Una palabra en el nombre de un recurso vale el doble que en la descripción.
+- **Guardado en GitHub:** los cambios del catálogo se suben solos al repositorio (cada día por defecto). Pulsa **Guardar ahora en GitHub** si no quieres esperar.
+- **Descargar copia (JSON):** todo el catálogo en un archivo.
+- **Cargar recursos:**
+  - Una copia completa (JSON con categorías) **restaura** todo el catálogo.
+  - Una lista (JSON o CSV) revisa y clasifica cada recurso, y al final muestra un informe.
 
-## 5. Cuentas
+Las cuentas, los pagos y los cursos **no** se suben a GitHub. Quien mantenga el servidor debe hacer copia de la carpeta `data/privado`.
 
-En ⚙️ **Administrar › 👥 Cuentas**:
-
-- Crea cuentas de **Docente** (solo ver y descargar) o de **Administración** (puede cambiar todo).
-- Usuario sin espacios ni tildes (por ejemplo, `maria.lopez`). Contraseña de 8 caracteres o más, con algún número.
-- 🔑 **Cambiar contraseña** de cualquier cuenta. Comunícala a la persona en privado.
-- 🗑️ **Borrar**: no puedes borrar tu propia cuenta ni la última de administración.
-
-## 6. Copias de seguridad
-
-Los datos se guardan **en este navegador**. Si se borran los datos del navegador, se pierden los cambios.
-
-En ⚙️ **Administrar › 💾 Copias**:
-
-- ⬇️ **Descargar copia (JSON)**: hazlo cada semana.
-- ⬆️ **Cargar recursos**:
-  - Una **copia de esta plataforma** (JSON con categorías) restaura todo.
-  - Un **JSON o CSV con recursos** los revisa y clasifica uno a uno. Al terminar verás un informe: publicados, rechazados (con motivo), repetidos y los que necesitan sección nueva (añádelos a mano).
-  - Columnas del CSV: `nombre, url, descripción, etapas, áreas, DOK, metodología, accesibilidad, coste`.
-- ♻️ **Restaurar catálogo original**: vuelve al catálogo inicial. Las cuentas no se borran.
-
-## 7. Actualizar el catálogo desde el Excel
-
-Si cambia el Excel de clasificación, una persona con conocimientos técnicos puede regenerar el catálogo inicial:
-
-```bash
-python3 herramientas/generar_catalogo.py RUTA/Clasificacion_paginas_web.xlsx
-```
-
-Después, en 💾 **Copias**, pulsa ♻️ **Restaurar catálogo original** para cargarlo.
+Para instalar y configurar el servidor (correo, Stripe, PayPal, GitHub e IA), consulta [DESPLIEGUE.md](DESPLIEGUE.md).

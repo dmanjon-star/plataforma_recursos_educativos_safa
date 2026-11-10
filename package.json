@@ -1,0 +1,23 @@
+{
+  "name": "recursos-safa",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Plataforma de recursos educativos SAFA con servidor: perfiles, pagos, cursos y clasificación automática.",
+  "type": "commonjs",
+  "main": "servidor/servidor.js",
+  "engines": {
+    "node": ">=20.10"
+  },
+  "scripts": {
+    "start": "node servidor/servidor.js",
+    "test": "node --test pruebas/*.test.js",
+    "e2e": "node pruebas/e2e.js",
+    "catalogo": "node servidor/scripts/construir-catalogo.js"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.7.0",
+    "nodemailer": "^10.5.0",
+    "zod": "^4.6.7"
+  }
+}
